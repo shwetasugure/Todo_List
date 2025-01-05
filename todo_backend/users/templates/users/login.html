@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h2 {
+            color: #f9f7f7;
+            padding: 12px;
+            font-weight: 600;
+        }
+
+        /* Container for the Login Form */
+        .login-container {
+            background-color: #ac71f9;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Input box styling */
+        input {
+            padding: 12px;
+            width: 80%;
+            border: 1px solid #000000;
+            border-radius: 10px;
+            outline: none;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #000000;
+        }
+
+        input:focus {
+            border-color: #000000;
+        }
+
+        /* Button styling */
+        button {
+            padding: 12px 25px;
+            border: none;
+            background-color: #51188e;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #380868;
+            transform: scale(1.05);
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: #000000;
+            margin: 12px 0;
+        }
+
+        /* Signup link styling */
+        .signup-link {
+            margin-top: 25px;
+        }
+
+        .signup-link p{
+            color: #000000;
+        }
+
+        .signup-link a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Label styling */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #110101;
+            text-align: left;
+            width: 80%;
+            margin-left: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Sign In</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" value="{{ form.username.value }}" required>
+                {% if form.username.errors %}
+                    <div class="error-message">
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+                {% if form.password.errors %}
+                    <div class="error-message">
+                        {% for error in form.password.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+        <div class="signup-link">
+            <p>New user? <a href="{% url 'signup' %}">Create an account</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Update Task</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f8f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h2 {
+            color: #fff4f4;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* Container for the Update Task Form */
+        .update-task-container {
+            background-color: #ac71f9;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Input box styling */
+        input {
+            padding: 12px;
+            width: 75%;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        input:focus {
+            border-color: #000000;
+        }
+
+        /* Button styling */
+        button {
+            padding: 12px 25px;
+            border: none;
+            background-color: #51188e;
+            color: white;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #380868;
+        }
+
+        /* Cancel link styling */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="update-task-container">
+        <h2>Update Task</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update Task</button>
+        </form>
+        <a href="{% url 'task_list' %}">Cancel</a>
+    </div>
+</body>
+
+</html>
+ 
